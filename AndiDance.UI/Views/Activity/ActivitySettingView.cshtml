@@ -1,0 +1,154 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>活动设置</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/andi.css">
+    <script src="./js/jquery/dist/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="./js/html5shiv/dist/html5shiv.min.js"></script><![endif]-->
+    <script src="./js/angular/angular.js"></script>
+    <script src="./js/layer/layer.js"></script>
+    <script src="./js/c_main.js"></script>
+    <script src="./js/CommonService/CommonService.js"></script>
+
+</head>
+<body ng-app="AnDi">
+    <div class="container" ng-controller="cMain">
+        <header>
+            <div class="top">
+                <div class="top-logo" ng-click="goIndex()">
+                    <p class="cn">安迪街舞会员管理系统</p>
+                    <p class="en">ANDI MEMBER MANAGE SYSTEM</p>
+                </div>
+                <div class="info">
+                    <a href="#" class="loginout"><img src="img/icon_loginout.png" alt=""></a>
+                    <span class="info_txt">张飞云，欢迎登陆</span>
+                </div>
+            </div>
+        </header>
+        <nav class="navLeft">
+            <ul>
+                <li ng-repeat="nav in navList">
+                    <div class="navTitle" ng-click="isActive($index)">{{nav.title}}</div>
+                    <div class="navContent" ng-show="navIndex==$index">
+                        <a ng-repeat="subNav in nav.content track by $index" href={{subNav.link}}><p>{{subNav.subName}}</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="content" ng-controller="activitySet">
+            <div class="commonBox">
+                <div class="commonBoxTitle clearfix">
+                    <p>活动设置</p>
+                    <div class="a_tabs fr mr20 clearfix">
+                        <div class="tabbar bor-5033ac">
+                            <a class="item bor-r-b-5033ac " ng-class="{true:'active',false:''}[isActive]" ng-click="isActive=true" href="javascript:void(0);">有效活动</a>
+                            <a class="item bor-r-b-5033ac" ng-class="{false:'active',true:''}[isActive]" ng-click="isActive=false" href="javascript:void(0);">失效活动</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt20">
+                <div class="commonBoxContent packageSetting">
+                    <div class="packageSettingBox" ng-show="isActive">
+                        <div class="commonBoxTitle mt10 mb10 clearfix">
+                            <button>添加活动</button>
+                            <button>搜索</button>
+                            <div class="selectInput fr">
+                                <input placeholder="请输入您要搜索内容" class="pl5">
+                            </div>
+                        </div>
+                        <table class="packageTableList textCenter">
+                            <tbody>
+                                <tr>
+                                    <th>活动名</th>
+                                    <th>绑定套餐数</th>
+                                    <th>参与人数</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>七夕情人节</td>
+                                    <td>3</td>
+                                    <td>34人</td>
+                                    <td>2016-11-1</td>
+                                    <td>2017-1-1</td>
+                                    <td>执行中</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900">作废</span><span class="btn_nowPackegTable b-ff0000">删除</span><a href="./packageDetail.html"><span class="btn_nowPackegTable b-4e4193">查看</span></a></td>
+                                </tr>
+                                <tr>
+                                    <td>永久会员</td>
+                                    <td>3</td>
+                                    <td>34人</td>
+                                    <td>2016-11-1</td>
+                                    <td>2017-1-1</td>
+                                    <td>执行中</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900">作废</span><span class="btn_nowPackegTable b-ff0000">删除</span><a href="./packageDetail.html"><span class="btn_nowPackegTable b-4e4193">查看</span></a></td>
+                                </tr>
+                                <tr>
+                                    <td>七夕情人节</td>
+                                    <td>3</td>
+                                    <td>34人</td>
+                                    <td>2016-11-1</td>
+                                    <td>2017-1-1</td>
+                                    <td>执行中</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900">作废</span><span class="btn_nowPackegTable b-ff0000">删除</span><a href="./packageDetail.html"><span class="btn_nowPackegTable b-4e4193">查看</span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagebox mt10">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">...</a>
+                            <a href="#">90</a>
+                            <a href="#">&gt;</a>
+                        </div>
+                    </div>
+                    <div class="packageSettingBox" ng-show="!isActive">
+                        <div class="commonBoxTitle mt10 mb10 clearfix">
+                            <button>搜索</button>
+                            <div class="selectInput fr">
+                                <input placeholder="请输入您要搜索内容" class="pl5">
+                            </div>
+                        </div>
+                        <table class="packageTableList textCenter">
+                            <tbody>
+                                <tr>
+                                    <th>活动名</th>
+                                    <th>绑定套餐数</th>
+                                    <th>参与人数</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>端午节踏青</td>
+                                    <td>3</td>
+                                    <td>34人</td>
+                                    <td>2016-11-1</td>
+                                    <td>2017-1-1</td>
+                                    <td>执行中</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900">启用</span><span class="btn_nowPackegTable b-ff0000">删除</span><a href="./packageDetail.html"><span class="btn_nowPackegTable b-4e4193">查看</span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagebox mt10">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">...</a>
+                            <a href="#">90</a>
+                            <a href="#">&gt;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

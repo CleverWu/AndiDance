@@ -1,0 +1,190 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/andi.css">
+    <script src="./js/jquery/dist/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="./js/html5shiv/dist/html5shiv.min.js"></script><![endif]-->
+    <script src="./js/angular/angular.js"></script>
+    <script src="./js/layer/layer.js"></script>
+    <script src="./js/c_main.js"></script>
+    <script src="./js/CommonService/CommonService.js"></script>
+
+</head>
+<body ng-app="AnDi">
+    <div class="container" ng-controller="cMain">
+        <header>
+            <div class="top">
+                <div class="top-logo" ng-click="goIndex()">
+                    <p class="cn">安迪街舞会员管理系统</p>
+                    <p class="en">ANDI MEMBER MANAGE SYSTEM</p>
+                </div>
+                <div class="info">
+                    <a href="#" class="loginout"><img src="img/icon_loginout.png" alt=""></a>
+                    <span class="info_txt">张飞云，欢迎登陆</span>
+                </div>
+            </div>
+        </header>
+        <nav class="navLeft">
+            <ul>
+                <li ng-repeat="nav in navList">
+                    <div class="navTitle" ng-click="isActive($index)">{{nav.title}}</div>
+                    <div class="navContent" ng-show="navIndex==$index">
+                        <a ng-repeat="subNav in nav.content track by $index" href={{subNav.link}}><p>{{subNav.subName}}</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="content" ng-controller="employeeDetail">
+            <!--代课弹框-->
+            <div class="commonPopUp substitute">
+                <div class="commonPopUp-title">
+                    代课
+                </div>
+                <div class="commonPopUp-content">
+                    <table>
+                        <tr><td>课程名：街舞基础</td></tr>
+                        <tr><td>上课时间：周一 9：30-12:30</td></tr>
+                        <tr><td>舞种：街舞</td></tr>
+                        <tr><td>教室：302</td></tr>
+                        <tr><td>代课时间选择:</tr>
+                        <tr><td><input type="date"><span class="ml5 mr5">至</span><input type="date"></td></tr>
+                        <tr><td>代课人:</tr>
+                        <tr><td><select class="commonSelectInput"><option>请选择</option><option>李大牛</option><option>网二毛</option></select></td></tr>
+                    </table>
+                </div>
+                <div class="commonPopUp-footer textCenter pb10">
+                    <button class="btn_common inlineBlock t-ffffff b-11cd6e">确定</button>
+                    <button class="btn_common inlineBlock b-ff0000">取消</button>
+                </div>
+            </div>
+            <!--停课弹框-->
+            <div class="commonPopUp closeClass">
+                <div class="commonPopUp-title">
+                    停课
+                </div>
+                <div class="commonPopUp-content">
+                    <table>
+                        <tr><td>课程名：街舞基础</td></tr>
+                        <tr><td>上课时间：周一 9：30-12:30</td></tr>
+                        <tr><td>舞种：街舞</td></tr>
+                        <tr><td>教室：302</td></tr>
+                        <tr><td>停课时间选择:</tr>
+                        <tr><td><input type="date"><span class="ml5 mr5">至</span><input type="date"></td></tr>
+                    </table>
+                </div>
+                <div class="commonPopUp-footer textCenter pb10">
+                    <button class="btn_common inlineBlock t-ffffff b-11cd6e">确定</button>
+                    <button class="btn_common inlineBlock b-ff0000">取消</button>
+                </div>
+            </div>
+            <!--离职弹框-->
+            <div class="commonPopUp leaveOffice">
+                <div class="commonPopUp-title">
+                    离职说明
+                </div>
+                <div class="commonPopUp-content">
+                    <table>
+                        <tr><td>姓名：小龙女</td></tr>
+                        <tr><td>电话：15386616570</td></tr>
+                    </table>
+                    <div class="mt10"><span style="vertical-align: top">离职说明：</span><textarea></textarea></div>
+                </div>
+                <div class="commonPopUp-footer textCenter pb10">
+                    <button class="btn_common inlineBlock t-ffffff b-11cd6e">确定</button>
+                    <button class="btn_common inlineBlock b-ff0000">取消</button>
+                </div>
+            </div>
+            <div class="commonBox">
+                <div class="commonBoxTitle clearfix">
+                    <p ng-click="freezePackageTc()">员工信息</p>
+                    <button>返回</button>
+                    <button>保存</button>
+                    <button ng-click="switch =!switch">编辑</button>
+                    <button ng-click=" leaveOffice()">离职</button>
+                </div>
+                <hr class="mt20">
+                <div class="commonBoxContent">
+                    <div class="employeePhoto mt10">
+                        <div class="employeePhoto-img">
+                            <img src="./img/new_photo13.jpg">
+                        </div>
+                        <div class="employeePhoto-input">
+                            <input type="file">
+                        </div>
+                    </div>
+                    <table class="addMemberTable employeeInfo">
+                        <tbody>
+                            <tr>
+                                <td>姓名：</td>
+                                <td><input ng-disabled="switch" value="小龙女"></td>
+                                <td>性别：</td>
+                                <td><select ng-disabled="switch "><option>请选择</option><option>男</option><option>女</option></select></td>
+                            </tr>
+                            <tr>
+                                <td>电话：</td>
+                                <td><input ng-disabled="switch"></td>
+                                <td>职位：</td>
+                                <td><select ng-disabled="switch "><option>请选择</option><option>总经理</option><option>副经理</option><option>普通工人</option></select></td>
+                            </tr>
+                            <tr>
+                                <td>门店：</td>
+                                <td><input ng-disabled="switch" value="笑傲街舞总店"></td>
+                                <td>住址：</td>
+                                <td><input ng-disabled="switch" value="桂花村12号"></td>
+                            </tr>
+                            <tr>
+                                <td>任职情况：</td>
+                                <td><select ng-disabled="switch "><option>请选择</option><option>全职</option><option>兼职</option><option>实习</option></select></td>
+                                <td>职位性质：</td>
+                                <td><select ng-disabled="switch "><option>请选择</option><option>全职</option><option>兼职</option><option>实习</option></select></td>
+                            </tr>
+                            <tr>
+                                <td class="vTop">备注：</td>
+                                <td><textarea class="w300 h100" ng-disabled="switch"></textarea></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+                        <h1 class="f16 fl">所上课程：</h1><button class="fr btn_common">一并代课</button>
+                    </div>
+                    <table class="nowPackegTable textCenter">
+                        <tbody>
+                            <tr>
+                                <th>课程名称</th>
+                                <th>代课</th>
+                                <th>上课时间</th>
+                                <th>舞种</th>
+                                <th>教室</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr>
+                                <td>街舞基础</td>
+                                <td>代课</td>
+                                <td>周一 9:30-12:30</td>
+                                <td>街舞</td>
+                                <td>302</td>
+                                <td><span class="btn_nowPackegTable btn_packageFrozen" ng-click="closeClass()">停课</span><span class="btn_nowPackegTable btn_packageDelay" ng-click="substitute()">代课</span></td>
+                            </tr>
+                            <tr>
+                                <td>街舞基础</td>
+                                <td>2017-9-27 10:30</td>
+                                <td>周一 9:30-12:30</td>
+                                <td>街舞</td>
+                                <td>302</td>
+                                <td><span class="btn_nowPackegTable btn_packageFrozen">停课</span><span class="btn_nowPackegTable btn_packageDelay">代课</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

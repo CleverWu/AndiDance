@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加会员</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/andi.css">
+    <script src="./js/jquery/dist/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="./js/html5shiv/dist/html5shiv.min.js"></script><![endif]-->
+    <script src="./js/angular/angular.js"></script>
+    <script src="./js/layer/layer.js"></script>
+    <script src="./js/c_main.js"></script>
+    <script src="./js/CommonService/CommonService.js"></script>
+
+</head>
+<body ng-app="AnDi">
+    <div class="container" ng-controller="cMain">
+        <header>
+            <div class="top">
+                <div class="top-logo" ng-click="goIndex()">
+                    <p class="cn">安迪街舞会员管理系统</p>
+                    <p class="en">ANDI MEMBER MANAGE SYSTEM</p>
+                </div>
+                <div class="info">
+                    <a href="#" class="loginout"><img src="img/icon_loginout.png" alt=""></a>
+                    <span class="info_txt">张飞云，欢迎登陆</span>
+                </div>
+            </div>
+        </header>
+        <nav class="navLeft">
+            <ul>
+                <li ng-repeat="nav in navList">
+                    <div class="navTitle" ng-click="isActive($index)">{{nav.title}}</div>
+                    <div class="navContent" ng-show="navIndex==$index">
+                        <a ng-repeat="subNav in nav.content track by $index" href={{subNav.link}}><p>{{subNav.subName}}</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="content" ng-controller="addCourse">
+            <!--添加课程弹框-->
+            <div class="commonPopUp addCourseTc">
+                <div class="commonPopUp-title">
+                    课程占用教室时间设置
+                </div>
+                <div class="commonPopUp-content">
+                    <p>周一上午</p>
+                    <table>
+                        <tbody>
+                            <tr><td>冻结时间：<input type="date" class="zfx-input w150 h25"><span class="ml5 mr5">至</span></td><td><input type="date" class="zfx-input w150 h25"></td></tr>
+                            <tr><td>地点：<select class="zfx-input w100 h30"><option>请选择</option><option>101</option><option>102</option></select></td></tr>
+                            <tr><td>老师：<select class="zfx-input w100 h30"><option>请选择</option><option>李大师</option><option>张大师</option></select></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="commonPopUp-footer textCenter pb10">
+                    <button class="btn_common inlineBlock t-ffffff b-11cd6e">确定</button><button class="btn_common inlineBlock ml5 ">取消</button>
+                </div>
+
+            </div>
+            <div class="commonBox">
+                <div class="commonBoxTitle clearfix">
+                    <p>添加课程</p>
+                    <button>返回</button>
+                    <button>提交</button>
+                </div>
+                <hr class="mt20">
+                <div class="commonBoxContent">
+                    <table class="addMemberTable">
+                        <tbody>
+                            <tr>
+                                <td>课程名称：</td>
+                                <td><input></td>
+                                <td>支付课时：</td>
+                                <td><input></td>
+                            </tr>
+                            <tr>
+                                <td>舞种：</td>
+                                <td><select><option>请选择</option><option>街舞</option><option>芭蕾</option></select></td>
+                                <td>课程类型：</td>
+                                <td><select><option>请选择</option><option>XXX</option><option>XXX</option></select></td>
+                            </tr>
+                            <tr>
+                                <td>班级类型：</td>
+                                <td><select><option>请选择</option><option>基础班</option><option>提高班</option></select></td>
+                                <td>课程时长：</td>
+                                <td><input>分钟</td>
+                            </tr>
+                            <tr>
+                                <td>所属：</td>
+                                <td><select><option>请选择</option><option>XX门店</option><option>XXXX门店</option></select></td>
+                            </tr>
+                            <tr>
+                                <td class="vTop">课程描述：</td>
+                                <td><textarea class="w300 h100"></textarea></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+                        <h1 class="f16 fl">分配课程至教室：</h1>
+                    </div>
+                    <table class="distributionCourse textCenter">
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>周一</th>
+                                <th>周二</th>
+                                <th>周三</th>
+                                <th>周四</th>
+                                <th>周五</th>
+                                <th>周六</th>
+                                <th>周日</th>
+                            </tr>
+                            <tr>
+                                <td>上午</td>
+                                <td>
+                                    <button class="btn_common mt10 mb15 b-4e4193 t-ffffff" ng-click="addCourseTc()">添加</button>
+                                </td>
+                                <td> <div class="courseDis mb5"><p>9:00-12:00</p><p><span>304</span></p><p><span>李飞 张玉龙</span><span class="courseR b-ff9900 ml5">修改</span></p></div></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                            </tr>
+                            <tr>
+                                <td>下午</td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                                <td><button class="btn_common mt10 mb15 b-4e4193 t-ffffff">添加</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

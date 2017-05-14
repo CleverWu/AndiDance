@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员财务</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/andi.css">
+    <script src="./js/jquery/dist/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="./js/html5shiv/dist/html5shiv.min.js"></script><![endif]-->
+    <script src="./js/angular/angular.js"></script>
+    <script src="./js/layer/layer.js"></script>
+    <script src="./js/c_main.js"></script>
+    <script src="./js/CommonService/CommonService.js"></script>
+
+</head>
+<body ng-app="AnDi">
+    <div class="container" ng-controller="cMain">
+        <header>
+            <div class="top">
+                <div class="top-logo" ng-click="goIndex()">
+                    <p class="cn">安迪街舞会员管理系统</p>
+                    <p class="en">ANDI MEMBER MANAGE SYSTEM</p>
+                </div>
+                <div class="info">
+                    <a href="#" class="loginout"><img src="img/icon_loginout.png" alt=""></a>
+                    <span class="info_txt">张飞云，欢迎登陆</span>
+                </div>
+            </div>
+        </header>
+        <nav class="navLeft">
+            <ul>
+                <li ng-repeat="nav in navList">
+                    <div class="navTitle" ng-click="isActive($index)">{{nav.title}}</div>
+                    <div class="navContent" ng-show="navIndex==$index">
+                        <a ng-repeat="subNav in nav.content track by $index" href={{subNav.link}}><p>{{subNav.subName}}</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="content" ng-controller="memberFinance">
+            <!--会员充值-->
+            <div class="chargeValue">
+                <div class="chargeValueTitle">
+                    充值
+                </div>
+                <div class="chargeValueContent">
+                    <div class="clearfix">
+                        <div class="chargeValueContent-photo fl">
+                            <img src="./img/new_photo11.jpg">
+                        </div>
+                        <div class="chargeValueContent-info fl">
+                            <table class="mt10 ml30">
+                                <tr><td>姓名：李大友</td><td>会员编号：9627</td></tr>
+                                <tr><td>会员类型：普通会员</td><td>卡号：15456455</td></tr>
+                                <tr><td>电话：13990419305</td><td>课程顾问：李大成</td></tr>
+                                <tr><td>当前余额：0元</td><td></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="chargeValueBalance">
+                        <p>充值时间：2016-1-1 9:15</p>
+                    </div>
+                    <table class="chargeValuetable">
+                        <tr>
+                            <th>缴费方式</th>
+                            <th>刷卡</th>
+                            <th>支付工具</th>
+                            <th>现金</th>
+                            <th>其他</th>
+                            <th>合计</th>
+                        </tr>
+                        <tr>
+                            <td><input ng-disabled="true"></td>
+                            <td><input ng-disabled="true"></td>
+                            <td><input ng-disabled="true"></td>
+                            <td><input ng-disabled="true"></td>
+                            <td><input ng-disabled="true"></td>
+                            <td><input ng-disabled="true"></td>
+                        </tr>
+                    </table>
+                    <div class="clearfix chargeValueBottom mt10">
+                        <p class="fl chargeValuePeople">收款人:</p>
+                        <select ng-disabled="true" class="nameSelect fl">
+                            <option>李大牛</option>
+                            <option>条件2</option>
+                            <option>条件3</option>
+                            <option>条件4</option>
+                        </select>
+                        <p class="fl chargeValuePeople">收款单据号:</p>
+                        <input ng-disabled="true" class="commonInput">
+                    </div>
+                </div>
+                <div class="textCenter mb10">
+                    <button class="btn_common b-11cd6e">确定</button>
+                    <button class="btn_common ml70" ng-click="cancelAll()">取消</button>
+                </div>
+            </div>
+            <div class="commonBox">
+                <div class="commonBoxTitle clearfix">
+                    <p>会员财务情况</p>
+                    <div class="a_tabs fr mr20 clearfix">
+                        <div class="tabbar bor-5033ac">
+                            <a class="item bor-r-b-5033ac " ng-class="{true:'active',false:''}[isActive]" ng-click="isActive=true" href="javascript:void(0);">会员余额</a>
+                            <a class="item bor-r-b-5033ac" ng-class="{false:'active',true:''}[isActive]" ng-click="isActive=false" href="javascript:void(0);">充值记录</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt20">
+                <div class="commonBoxContent packageSetting">
+                    <div class="packageSettingBox" ng-show="isActive">
+                        <div class="commonBoxTitle mt10 mb10 clearfix">
+                            <button>搜索</button>
+                            <div class="selectInput fr">
+                                <!--  <select class="commonSelectInput-select">
+                                      <option>收款人</option>
+                                      <option>条件2</option>
+                                      <option>条件3</option>
+                                      <option>条件4</option>
+                                  </select>-->
+                                <input placeholder="请输入您要搜索内容" class="pl5" type="date">
+                                <span class="ml5 mr5">至</span>
+                                <input placeholder="请输入您要搜索内容" class="pl5" type="date">
+                            </div>
+                        </div>
+                        <table class="packageTableList textCenter">
+                            <tbody>
+                                <tr>
+                                    <th>会员名</th>
+                                    <th>卡号</th>
+                                    <th>电话</th>
+                                    <th>所属</th>
+                                    <th>余额</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>李大牛</td>
+                                    <td>22044</td>
+                                    <td>13786309115</td>
+                                    <td>安迪街舞总部</td>
+                                    <td>-500元</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900">充值</span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagebox mt10">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">...</a>
+                            <a href="#">90</a>
+                            <a href="#">&gt;</a>
+                        </div>
+                    </div>
+                    <div class="packageSettingBox" ng-show="!isActive">
+                        <div class="commonBoxTitle mt10 mb10 clearfix">
+                            <button>搜索</button>
+                            <div class="selectInput fr">
+                                <!--  <select class="commonSelectInput-select">
+                                      <option>收款人</option>
+                                      <option>条件2</option>
+                                      <option>条件3</option>
+                                      <option>条件4</option>
+                                  </select>-->
+                                <input placeholder="请输入您要搜索内容" class="pl5" type="date">
+                                <span class="ml5 mr5">至</span>
+                                <input placeholder="请输入您要搜索内容" class="pl5" type="date">
+                            </div>
+                        </div>
+                        <table class="packageTableList textCenter">
+                            <tbody>
+                                <tr>
+                                    <th>会员名</th>
+                                    <th>收款人</th>
+                                    <th>时间</th>
+                                    <th>充值额度</th>
+                                    <th>收款编号</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>李大牛</td>
+                                    <td>曾阿牛</td>
+                                    <td>2016-1-1 9：10</td>
+                                    <td>500元</td>
+                                    <td>45454545</td>
+                                    <td><span class="btn_nowPackegTable b-ff9900" ng-click="chargeValue()">查看</span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagebox mt10">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">...</a>
+                            <a href="#">90</a>
+                            <a href="#">&gt;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

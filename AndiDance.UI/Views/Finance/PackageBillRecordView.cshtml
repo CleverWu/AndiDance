@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签单情况</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/andi.css">
+    <script src="./js/jquery/dist/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="./js/html5shiv/dist/html5shiv.min.js"></script><![endif]-->
+    <script src="./js/angular/angular.js"></script>
+    <script src="./js/layer/layer.js"></script>
+    <script src="./js/c_main.js"></script>
+    <script src="./js/CommonService/CommonService.js"></script>
+
+</head>
+<body ng-app="AnDi">
+    <div class="container" ng-controller="cMain">
+        <header>
+            <div class="top">
+                <div class="top-logo" ng-click="goIndex()">
+                    <p class="cn">安迪街舞会员管理系统</p>
+                    <p class="en">ANDI MEMBER MANAGE SYSTEM</p>
+                </div>
+                <div class="info">
+                    <a href="#" class="loginout"><img src="img/icon_loginout.png" alt=""></a>
+                    <span class="info_txt">张飞云，欢迎登陆</span>
+                </div>
+            </div>
+        </header>
+        <nav class="navLeft">
+            <ul>
+                <li ng-repeat="nav in navList">
+                    <div class="navTitle" ng-click="isActive($index)">{{nav.title}}</div>
+                    <div class="navContent" ng-show="navIndex==$index">
+                        <a ng-repeat="subNav in nav.content track by $index" href={{subNav.link}}><p>{{subNav.subName}}</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="content" ng-controller="packageBillRecord">
+            <!--签单详情-->
+            <div class="commonPopUp packageRecordTc">
+                <div class="commonPopUp-title">
+                    签单详情
+                </div>
+                <div class="commonPopUp-content">
+                    <ul class="packageB">
+                        <li><span>套餐名：30天20次套餐</span></li>
+                        <li><span>价格：500元</span><span>课时：50</span></li>
+                        <li><span>时限：30天</span></li>
+                        <li><span>套餐名：30天20次套餐</span></li>
+                    </ul>
+                    <hr class="mb5">
+                    <ul class="activityNow">
+                        <li><span>执行活动：七夕情人节</span></li>
+                        <li><span>价格：450元</span><span>课时：60</span></li>
+                        <li><span>时限：60天</span></li>
+                    </ul>
+                    <hr class="mb5">
+                    <ul class="billMember">
+                        <li>会员：李大牛</li>
+                        <li>余额：700元</li>
+                        <li>购买后余额：1元</li>
+                        <li>签单人员：李二牛</li>
+                        <li>签单时间：2016-9-1 10:00</li>
+                    </ul>
+                </div>
+                <div class="commonPopUp-footer textCenter pb10">
+                    <button class="btn_common inlineBlock t-ffffff b-11cd6e">确定</button><button class="btn_common inlineBlock ml5 ">取消</button>
+                </div>
+
+            </div>
+            <div class="commonBox">
+                <div class="commonBoxTitle  clearfix">
+                    <p>签单情况</p>
+                    <button>搜索</button>
+                    <div class="selectInput fr">
+                        <!--  <select class="commonSelectInput-select">
+                              <option>收款人</option>
+                              <option>条件2</option>
+                              <option>条件3</option>
+                              <option>条件4</option>
+                          </select>-->
+                        <input placeholder="请输入您要搜索内容" class="pl5 zfx-input" type="date">
+                        <span class="ml5 mr5">至</span>
+                        <input placeholder="请输入您要搜索内容" class="pl5 zfx-input" type="date">
+                    </div>
+                </div>
+                <hr class="mt20">
+                <div class="commonBoxContent">
+                    <table class="todayCommonTable">
+                        <tr ng-click="packageRecordTc()">
+                            <th>序号</th>
+                            <th>会员名</th>
+                            <th>套餐名</th>
+                            <th>参加活动</th>
+                            <th>签单时间</th>
+                            <th>价格</th>
+                            <th>签单人</th>
+                        </tr>
+                        <td>1</td>
+                        <td>非礼勿视</td>
+                        <td>30天20课时套餐</td>
+                        <td>七夕情人节</td>
+                        <td>2016-9-12 9:32</td>
+                        <td>500元</td>
+                        <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>非礼勿视</td>
+                            <td>30天20课时套餐</td>
+                            <td>七夕情人节</td>
+                            <td>2016-9-12 9:32</td>
+                            <td>500元</td>
+                            <td>李大牛</td>
+                        </tr>
+
+                    </table>
+                    <div class="pagebox">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">...</a>
+                        <a href="#">90</a>
+                        <a href="#">&gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
